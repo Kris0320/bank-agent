@@ -3,6 +3,7 @@ import { ProxyAgent, setGlobalDispatcher } from 'undici';
 setGlobalDispatcher(new ProxyAgent('http://127.0.0.1:7897'));
 
 import Anthropic from "@anthropic-ai/sdk";
+
 import { betaZodTool } from "@anthropic-ai/sdk/helpers/beta/zod";
 import { z } from "zod";
 
@@ -25,6 +26,7 @@ const getTransactionStatus = betaZodTool({
   }),
   run: async ({ id }) => {
     console.log(`  [工具] get_transaction_status(${id})`); // 让你看到工具真的被调用了
+    if (id === "T5000") throw new Error("Transaction service timed out"); // 模拟系统故障
     const tx = transactions[id];
     if (!tx) return JSON.stringify({ error: "not_found", id });
     return JSON.stringify({ id, ...tx });
