@@ -5,7 +5,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "check": "tsc",
-    "check-api": "node --env-file=.env --import tsx src/check.ts"
+    "check-api": "node --env-file=.env --import tsx src/check.ts",
+    "agent": "node --env-file=.env --import tsx src/agent.ts"
   },
   "keywords": [],
   "author": "",
@@ -13,6 +14,7 @@
   "description": "",
   "dependencies": {
     "@anthropic-ai/sdk": "^1.7.0",
+    "undici": "^7.30.2",
     "zod": "^4.6.7"
   },
   "devDependencies": {
