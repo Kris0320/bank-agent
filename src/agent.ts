@@ -41,7 +41,7 @@ const finalMessage = await client.beta.messages.toolRunner({
   max_tokens: 2000,
   max_iterations: 5, // 最多循环 5 轮，防止无限调用
   thread: false, // 不用服务器暂存对话：每次都把完整对话发过去
-  system: "你是一家银行的客服助手。只根据工具返回的数据回答，查不到就如实告诉用户，不要编造。",
+  system: "你是一家银行的客服助手。只根据工具返回的数据回答，查不到就如实告诉用户，不要编造。始终用中文回答问题。",
   tools: [getTransactionStatus],
   messages: [{ role: "user", content: question }],
 });
