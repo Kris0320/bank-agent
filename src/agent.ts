@@ -1,6 +1,9 @@
 import { ProxyAgent, setGlobalDispatcher } from 'undici';
 
-setGlobalDispatcher(new ProxyAgent('http://127.0.0.1:7897'));
+const proxyUrl = process.env.PROXY_URL;
+if (proxyUrl) {
+  setGlobalDispatcher(new ProxyAgent(proxyUrl));
+}
 
 import Anthropic from "@anthropic-ai/sdk";
 
